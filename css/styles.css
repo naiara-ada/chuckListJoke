@@ -27,5 +27,12 @@ button:hover {
   background-color: #0056b3;
 }
 
+li{
+  list-style: none;
+  background-color: #fff;
+  padding: 15px;
+  margin:15px;
+}
+
 
 
