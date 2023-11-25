@@ -1,7 +1,7 @@
 const fetchJoke = document.getElementById('fetchJoke');
 const jokeList = document.getElementById('jokeList');
 const clear = document.getElementById('clear');
-let btn;
+
 
 printJokes ();
 
@@ -42,13 +42,10 @@ function getJokes (joke){
         listado.push(value);
     }
     localStorage.setItem('chuckJokes', JSON.stringify(listado))
-        
-    console.log(listado)
-    localStorage.setItem('chuckJokes', JSON.stringify(listado))
+    
 }
 
-function printJokes (){
-    
+function printJokes (){    
     jokeList.innerHTML='';
     let listado = JSON.parse(localStorage.getItem('chuckJokes'));
     if (listado !== null){
@@ -61,30 +58,25 @@ function printJokes (){
         </li>        
         `
     });
-}
-
-    btn = document.querySelectorAll('.btn');
+    }
+    //controlar que boton de eliminar se ha pulsado
+    const btn = document.querySelectorAll('.btn');
     btn.forEach( (boton)=>{
         boton.addEventListener('click', ()=>{
             borrarJoke(boton.value)
         })
     })  
-   
-
 }
 
 function borrarJoke(posicion){
     let listadoBorrar = JSON.parse(localStorage.getItem('chuckJokes'));
     let nuevoListado = [];
-    console.log('listadoBorrar', listadoBorrar);
     for (let i in listadoBorrar){
         if (i !== posicion){
            nuevoListado.push(listadoBorrar[i])
         }
     }
-    
-    console.log('nuevoListado', nuevoListado)
+     
     localStorage.setItem('chuckJokes', JSON.stringify(nuevoListado))
-    console.log(localStorage);
     printJokes();
 }
