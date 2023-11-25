@@ -1,7 +1,7 @@
 const fetchJoke = document.getElementById('fetchJoke');
 const jokeList = document.getElementById('jokeList');
 const clear = document.getElementById('clear');
-
+let btn;
 
 printJokes ();
 
@@ -21,8 +21,7 @@ fetchJoke.addEventListener('click', ()=>{
         })
         .then (jokes =>{
             getJokes(jokes);
-            printJokes()
-
+            printJokes();
         })
         .catch(error =>{
             console.error(error)
@@ -58,32 +57,34 @@ function printJokes (){
         jokeList.innerHTML += `
         <li>
             ${element}
-            
+            <button class='btn' value='${i}'>Eliminar</button>
         </li>        
         `
     });
 }
 
-const btn = document.querySelectorAll('.btn');
-    console.log('boton',btn);
-    for (element of btn){
-        element.addEventListener('click', (boton=>{
-            borrarJoke(boton.value);
-        }))
-    }
+    btn = document.querySelectorAll('.btn');
+    btn.forEach( (boton)=>{
+        boton.addEventListener('click', ()=>{
+            borrarJoke(boton.value)
+        })
+    })  
+   
 
 }
-/*
-function borrarJoke(posicion){
-    let listado = JSON.parse(localStorage.getItem('chuckJokes'));
-    let nuevoListado = [];
 
-    for (let i = 0; i< listado.lenght;i++){
+function borrarJoke(posicion){
+    let listadoBorrar = JSON.parse(localStorage.getItem('chuckJokes'));
+    let nuevoListado = [];
+    console.log('listadoBorrar', listadoBorrar);
+    for (let i in listadoBorrar){
         if (i !== posicion){
-            nuevoListado.push(listado[i])
+           nuevoListado.push(listadoBorrar[i])
         }
     }
-    console.log(nuevoListado)
+    
+    console.log('nuevoListado', nuevoListado)
     localStorage.setItem('chuckJokes', JSON.stringify(nuevoListado))
+    console.log(localStorage);
     printJokes();
-}*/
+}

@@ -27,11 +27,21 @@ button:hover {
   background-color: #0056b3;
 }
 
+ul{
+  width: 700px;
+}
+
 li{
+  display: flex;
+  flex-direction: column;
   list-style: none;
   background-color: #fff;
   padding: 15px;
   margin:15px;
+}
+li button{
+  width: 100px;
+  background-color: rgb(215, 61, 61);
 }
 
 
